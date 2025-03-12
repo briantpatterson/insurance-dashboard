@@ -62,6 +62,15 @@ export function MainNav({
       >
         Billing
       </Link>
+      <Link
+        href="/reports"
+        className={cn(
+          "text-sm font-medium transition-colors hover:text-primary",
+          pathname.startsWith("/reports") ? "text-primary" : "text-muted-foreground"
+        )}
+      >
+        Reports
+      </Link>
     </nav>
   )
 } 
