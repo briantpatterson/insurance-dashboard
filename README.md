@@ -1,6 +1,6 @@
 # Insurance Dashboard
 
-A web dashboard for HR users to manage group benefits for their employees. This application provides a modern interface for managing enrollments, billing, benefits, claims, accommodations, policies, and documents.
+A web dashboard for HR users to manage group benefits for their employees. This application provides a modern interface for managing employees, billing, benefits, claims, accommodations, policies, and documents.
 
 ## Features
 
@@ -67,10 +67,10 @@ If you're using VS Code, you can also use the built-in task by pressing `Ctrl+Sh
 The dashboard includes the following navigation items:
 
 - Home: Dashboard overview
-- Enrollment: Manage employee enrollments
+- Employees: Manage employee information and benefits
 - Billing: Handle billing and payments
 - Benefits: Configure and manage benefit plans
-- Claims: Process and track claims
+- Leaves: Manage and track employee leave requests
 - Accommodations: Manage workplace accommodations
 - Policies: View and update company policies
 - Documents: Access and manage important documents 

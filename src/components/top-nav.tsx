@@ -27,18 +27,18 @@ export function TopNav() {
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 mr-4">
           <div className="flex h-8 w-8 items-center justify-center rounded-md bg-primary">
-            <span className="text-lg font-bold text-primary-foreground">IB</span>
+            <span className="text-lg font-bold text-primary-foreground">IC</span>
           </div>
-          <span className="hidden font-semibold md:inline-block">Insurance Benefits</span>
+          <span className="hidden font-semibold md:inline-block">InsuranceCo</span>
         </Link>
 
         {/* Search Bar */}
-        <div className="hidden flex-1 md:block max-w-md mx-auto">
-          <div className="relative">
+        <div className="hidden md:flex flex-1 justify-center">
+          <div className="relative w-full max-w-xl">
             <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
             <input
               type="text"
-              placeholder="Search..."
+              placeholder="Search employee name or claim number"
               className="w-full rounded-md border border-input bg-background py-2 pl-10 pr-4 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
             />
           </div>

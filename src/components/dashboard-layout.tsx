@@ -37,7 +37,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
             />
             <div className="fixed inset-y-0 left-0 w-64 bg-background">
               <div className="flex h-16 items-center border-b px-4 md:px-6">
-                <h2 className="text-lg font-semibold">Insurance Dashboard</h2>
+                <h2 className="text-lg font-semibold">InsuranceCo</h2>
               </div>
               <div className="py-6 overflow-y-auto h-[calc(100vh-4rem)]">
                 <SidebarNav items={sidebarNavItems} className="px-4 md:px-6" />

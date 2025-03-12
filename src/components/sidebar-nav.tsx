@@ -9,6 +9,7 @@ import {
   Receipt,
   Heart,
   FileText,
+  Calendar,
   Briefcase,
   BookOpen,
   FileIcon,
@@ -73,8 +74,8 @@ export const sidebarNavItems = [
     icon: <Home className="h-5 w-5" />,
   },
   {
-    title: "Enrollment",
-    href: "/enrollment",
+    title: "Employees",
+    href: "/employees",
     icon: <ClipboardList className="h-5 w-5" />,
   },
   {
@@ -88,9 +89,9 @@ export const sidebarNavItems = [
     icon: <Heart className="h-5 w-5" />,
   },
   {
-    title: "Claims",
-    href: "/claims",
-    icon: <FileText className="h-5 w-5" />,
+    title: "Leaves",
+    href: "/leaves",
+    icon: <Calendar className="h-5 w-5" />,
   },
   {
     title: "Accommodations",

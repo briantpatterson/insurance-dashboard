@@ -73,4 +73,24 @@
   body {
     @apply bg-background text-foreground;
   }
+  
+  /* Add pointer cursor to clickable elements */
+  a, 
+  button, 
+  [role="button"],
+  .cursor-pointer,
+  input[type="submit"],
+  input[type="button"],
+  input[type="reset"],
+  select,
+  summary,
+  [tabindex]:not([tabindex="-1"]) {
+    cursor: pointer;
+  }
+}
+
+@layer utilities {
+  .clickable {
+    cursor: pointer;
+  }
 } 
