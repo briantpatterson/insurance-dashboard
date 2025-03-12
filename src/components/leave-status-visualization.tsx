@@ -6,6 +6,7 @@ interface LeaveStatusData {
   status: string
   count: number
   color: string
+  darkColor?: string
 }
 
 interface LeaveStatusVisualizationProps {
@@ -20,8 +21,8 @@ export function LeaveStatusVisualization({ data, total }: LeaveStatusVisualizati
   return (
     <div className="rounded-lg border bg-card p-6 shadow-sm lg:col-span-2">
       <div className="flex justify-between items-start w-full">
-        <h3 className="text-xl font-bold text-slate-800">Leave status</h3>
-        <Link href="/leaves" className="text-blue-600 hover:underline">
+        <h3 className="text-xl font-bold text-slate-800 dark:text-slate-100">Leave status</h3>
+        <Link href="/leaves" className="text-blue-600 hover:underline dark:text-blue-400">
           View all leaves
         </Link>
       </div>
@@ -44,8 +45,10 @@ export function LeaveStatusVisualization({ data, total }: LeaveStatusVisualizati
               className="h-full rounded-full"
               style={{ 
                 width: `${percentage}%`, 
-                backgroundColor: item.color,
+                backgroundColor: `var(--color-${index})`,
               }}
+              data-color={item.color}
+              data-dark-color={item.darkColor || item.color}
             />
           );
         })}
@@ -61,19 +64,48 @@ export function LeaveStatusVisualization({ data, total }: LeaveStatusVisualizati
             <div className="flex items-center gap-2 mb-2">
               <div 
                 className="w-3 h-3 rounded-full" 
-                style={{ backgroundColor: item.color }}
+                style={{ 
+                  backgroundColor: `var(--color-${index})`,
+                }}
+                data-color={item.color}
+                data-dark-color={item.darkColor || item.color}
               />
-              <span className="font-medium text-slate-800">{item.status}</span>
+              <span className="font-medium text-slate-800 dark:text-slate-100">{item.status}</span>
             </div>
             <div className="flex items-baseline">
-              <span className="text-4xl font-bold" style={{ color: item.color }}>
+              <span 
+                className="text-4xl font-bold" 
+                style={{ 
+                  color: `var(--color-${index})`,
+                }}
+                data-color={item.color}
+                data-dark-color={item.darkColor || item.color}
+              >
                 {item.count}
               </span>
-              <span className="ml-2 text-slate-600">leaves</span>
+              <span className="ml-2 text-slate-600 dark:text-slate-400">leaves</span>
             </div>
           </div>
         ))}
       </div>
+      
+      <style jsx>{`
+        :global(.dark) [data-color] {
+          --color-0: ${data[0]?.darkColor || data[0]?.color};
+          --color-1: ${data[1]?.darkColor || data[1]?.color};
+          --color-2: ${data[2]?.darkColor || data[2]?.color};
+          --color-3: ${data[3]?.darkColor || data[3]?.color};
+          --color-4: ${data[4]?.darkColor || data[4]?.color};
+        }
+        
+        [data-color] {
+          --color-0: ${data[0]?.color};
+          --color-1: ${data[1]?.color};
+          --color-2: ${data[2]?.color};
+          --color-3: ${data[3]?.color};
+          --color-4: ${data[4]?.color};
+        }
+      `}</style>
     </div>
   )
 } 
