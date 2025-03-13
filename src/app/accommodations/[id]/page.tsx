@@ -76,7 +76,7 @@ export default function AccommodationDetailsPage({ params }: AccommodationDetail
               </BreadcrumbItem>
               <BreadcrumbSeparator />
               <BreadcrumbItem>
-                <BreadcrumbLink>Accommodation Details</BreadcrumbLink>
+                <BreadcrumbLink href={`/accommodations/${params.id}`}>Accommodation Details</BreadcrumbLink>
               </BreadcrumbItem>
             </BreadcrumbList>
           </Breadcrumb>

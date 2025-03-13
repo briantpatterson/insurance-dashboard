@@ -2,6 +2,7 @@ import "@/styles/globals.css"
 import type { Metadata } from "next"
 import { ThemeProvider } from "@/components/theme-provider"
 import { NotificationProvider } from "@/contexts/notification-context"
+import { Toaster } from "@/components/ui/toaster"
 
 export const metadata: Metadata = {
   title: "InsuranceCo Dashboard",
@@ -34,6 +35,7 @@ export default function RootLayout({
         >
           <NotificationProvider>
             {children}
+            <Toaster />
           </NotificationProvider>
         </ThemeProvider>
       </body>
