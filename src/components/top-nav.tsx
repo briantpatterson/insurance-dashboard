@@ -3,7 +3,6 @@
 import Link from "next/link"
 import { cn } from "@/lib/utils"
 import { 
-  Search, 
   Bell, 
   User,
   Settings,
@@ -20,6 +19,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { ThemeToggle } from "@/components/theme-toggle"
+import { EmployeeSearch } from "@/components/employee-search"
 
 export function TopNav() {
   return (
@@ -35,14 +35,7 @@ export function TopNav() {
 
         {/* Search Bar */}
         <div className="hidden md:flex flex-1 justify-center">
-          <div className="relative w-full max-w-xl">
-            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-            <input
-              type="text"
-              placeholder="Search employee name or claim number"
-              className="w-full rounded-md border border-input bg-background py-2 pl-10 pr-4 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-            />
-          </div>
+          <EmployeeSearch />
         </div>
 
         {/* Right side icons */}
