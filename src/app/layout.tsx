@@ -1,6 +1,7 @@
 import "@/styles/globals.css"
 import type { Metadata } from "next"
 import { ThemeProvider } from "@/components/theme-provider"
+import { NotificationProvider } from "@/contexts/notification-context"
 
 export const metadata: Metadata = {
   title: "InsuranceCo Dashboard",
@@ -31,7 +32,9 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <NotificationProvider>
+            {children}
+          </NotificationProvider>
         </ThemeProvider>
       </body>
     </html>

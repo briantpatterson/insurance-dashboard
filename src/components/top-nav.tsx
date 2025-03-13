@@ -3,7 +3,6 @@
 import Link from "next/link"
 import { cn } from "@/lib/utils"
 import { 
-  Bell, 
   User,
   Settings,
   LogOut,
@@ -20,6 +19,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { EmployeeSearch } from "@/components/employee-search"
+import { NotificationDropdown } from "@/components/notification-dropdown"
 
 export function TopNav() {
   return (
@@ -42,10 +42,7 @@ export function TopNav() {
         <div className="ml-auto flex items-center gap-4">
           <ThemeToggle />
           
-          <Button variant="ghost" size="icon" className="relative">
-            <Bell className="h-5 w-5" />
-            <span className="absolute right-1 top-1 h-2 w-2 rounded-full bg-destructive"></span>
-          </Button>
+          <NotificationDropdown />
 
           {/* User Profile Dropdown */}
           <DropdownMenu>
