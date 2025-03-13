@@ -70,7 +70,7 @@ export default function LeaveDetailsPage({ params }: LeaveDetailsPageProps) {
               </BreadcrumbItem>
               <BreadcrumbSeparator />
               <BreadcrumbItem>
-                <BreadcrumbLink>Leave Details</BreadcrumbLink>
+                <BreadcrumbLink href="#">Leave Details</BreadcrumbLink>
               </BreadcrumbItem>
             </BreadcrumbList>
           </Breadcrumb>
