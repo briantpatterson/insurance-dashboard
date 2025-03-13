@@ -63,13 +63,22 @@ export function MainNav({
         Billing
       </Link>
       <Link
-        href="/reports"
+        href="/documents"
         className={cn(
-          "text-sm font-medium transition-colors hover:text-primary",
-          pathname.startsWith("/reports") ? "text-primary" : "text-muted-foreground"
+          "flex items-center text-sm font-medium transition-colors hover:text-primary",
+          pathname.startsWith("/documents") ? "text-primary" : "text-muted-foreground"
         )}
       >
-        Reports
+        Documents
+      </Link>
+      <Link
+        href="/insights"
+        className={cn(
+          "flex items-center text-sm font-medium transition-colors hover:text-primary",
+          pathname.startsWith("/insights") ? "text-primary" : "text-muted-foreground"
+        )}
+      >
+        Insights
       </Link>
     </nav>
   )

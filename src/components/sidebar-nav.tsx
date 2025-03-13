@@ -110,8 +110,8 @@ export const sidebarNavItems = [
     icon: <FileIcon className="h-5 w-5" />,
   },
   {
-    title: "Reports",
-    href: "/reports",
+    title: "Insights",
+    href: "/insights",
     icon: <BarChart className="h-5 w-5" />,
   },
 ] 
