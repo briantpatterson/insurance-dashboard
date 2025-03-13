@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { Legend, Tooltip } from "recharts"
+import { Legend, Tooltip, ResponsiveContainer } from "recharts"
 
 import { cn } from "@/lib/utils"
 
@@ -57,14 +57,45 @@ export function ChartContainer({
   )
 }
 
-interface ChartLegendContentProps extends React.HTMLAttributes<HTMLDivElement> {}
+interface ChartLegendContentProps extends React.HTMLAttributes<HTMLDivElement> {
+  payload?: Array<{
+    value: string;
+    type: string;
+    id: string;
+    color: string;
+  }>;
+}
 
 export function ChartLegendContent({
   className,
+  payload,
   ...props
 }: ChartLegendContentProps) {
   const { config } = useChartContext()
+  
+  // If payload is provided, use it instead of config
+  if (payload && payload.length > 0) {
+    return (
+      <div
+        className={cn("flex items-center justify-center gap-8", className)}
+        {...props}
+      >
+        {payload.map((entry, index) => (
+          <div key={`item-${index}`} className="flex items-center gap-2">
+            <div
+              className="h-3 w-3 rounded-sm"
+              style={{ backgroundColor: entry.color }}
+            />
+            <span className="text-sm text-muted-foreground">
+              {entry.value}
+            </span>
+          </div>
+        ))}
+      </div>
+    );
+  }
 
+  // Fallback to using config
   return (
     <div
       className={cn("flex items-center justify-center gap-8", className)}

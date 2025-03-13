@@ -1,7 +1,7 @@
 "use client"
 
 import { TrendingUp, TrendingDown } from "lucide-react"
-import { Bar, BarChart, CartesianGrid, XAxis } from "recharts"
+import { Bar, BarChart, CartesianGrid, XAxis, YAxis, ResponsiveContainer } from "recharts"
 
 import {
   Card,
@@ -67,30 +67,39 @@ export function DisabilityLeavesChart() {
       </CardHeader>
       <CardContent>
         <ChartContainer config={chartConfig}>
-          <BarChart accessibilityLayer data={leavesData}>
-            <CartesianGrid vertical={false} />
-            <XAxis
-              dataKey="month"
-              tickLine={false}
-              tickMargin={10}
-              axisLine={false}
-              tickFormatter={(value) => value.slice(0, 3)}
-            />
-            <ChartTooltip content={<ChartTooltipContent hideLabel />} />
-            <ChartLegend content={<ChartLegendContent />} />
-            <Bar
-              dataKey="std"
-              stackId="a"
-              fill="var(--color-std)"
-              radius={[0, 0, 4, 4]}
-            />
-            <Bar
-              dataKey="ltd"
-              stackId="a"
-              fill="var(--color-ltd)"
-              radius={[4, 4, 0, 0]}
-            />
-          </BarChart>
+          <ResponsiveContainer width="100%" height="100%">
+            <BarChart data={leavesData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+              <CartesianGrid strokeDasharray="3 3" vertical={false} />
+              <XAxis
+                dataKey="month"
+                tickLine={false}
+                tickMargin={10}
+                axisLine={false}
+                tickFormatter={(value) => value.slice(0, 3)}
+              />
+              <YAxis 
+                tickLine={false}
+                axisLine={false}
+                tickMargin={10}
+              />
+              <ChartTooltip content={<ChartTooltipContent hideLabel />} />
+              <ChartLegend content={<ChartLegendContent />} />
+              <Bar
+                dataKey="std"
+                stackId="a"
+                fill="var(--color-std)"
+                radius={[0, 0, 4, 4]}
+                name="std"
+              />
+              <Bar
+                dataKey="ltd"
+                stackId="a"
+                fill="var(--color-ltd)"
+                radius={[4, 4, 0, 0]}
+                name="ltd"
+              />
+            </BarChart>
+          </ResponsiveContainer>
         </ChartContainer>
       </CardContent>
       <CardFooter className="flex-col items-start gap-2 text-sm">
