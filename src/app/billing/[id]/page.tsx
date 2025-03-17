@@ -6,6 +6,7 @@ import { DashboardLayout } from "@/components/dashboard-layout"
 import { Button } from "@/components/ui/button"
 import { ChevronLeft, Download, CreditCard, Calendar, CheckCircle2, AlertCircle } from "lucide-react"
 import { billingHistory } from "@/data/billing"
+import Link from "next/link"
 
 interface BillingDetailsPageProps {
   params: {
@@ -70,14 +71,11 @@ export default function BillingDetailsPage({ params }: BillingDetailsPageProps) 
       <div className="flex flex-col space-y-8">
         {/* Breadcrumb navigation */}
         <div className="flex items-center space-x-1 text-sm text-muted-foreground">
-          <Button 
-            variant="ghost" 
-            size="sm" 
-            className="h-8 gap-1"
-            onClick={() => router.push("/billing")}
-          >
-            <ChevronLeft className="h-4 w-4" />
-            Back to Billing
+          <Button variant="outline" size="sm" asChild>
+            <Link href="/billing">
+              <ChevronLeft className="mr-2 h-4 w-4" />
+              Back to Billing
+            </Link>
           </Button>
         </div>
         

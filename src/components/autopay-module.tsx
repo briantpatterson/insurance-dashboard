@@ -114,7 +114,7 @@ export function AutopayModule({ settings }: AutopayModuleProps) {
           Update Payment Method
         </Button>
         <Button variant="outline" size="sm">
-          View Payment History
+          View Billing FAQs
         </Button>
       </CardFooter>
       
