@@ -43,6 +43,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
+import { DateRange } from "react-day-picker"
+import { DateRangePicker } from "@/components/date-range-picker"
+import { format } from "date-fns"
 
 interface BillingHistoryTableProps {
   billingHistory: BillingItem[]
@@ -51,26 +54,6 @@ interface BillingHistoryTableProps {
 // Define the columns for the billing history table
 const columns: ColumnDef<BillingItem>[] = [
   {
-    accessorKey: "invoiceNumber",
-    header: ({ column }) => (
-      <Button
-        variant="ghost"
-        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        className="font-medium p-0 h-auto"
-      >
-        Invoice #
-        {column.getIsSorted() === "asc" ? (
-          <ChevronUp className="ml-2 h-4 w-4" />
-        ) : column.getIsSorted() === "desc" ? (
-          <ChevronDown className="ml-2 h-4 w-4" />
-        ) : (
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        )}
-      </Button>
-    ),
-    cell: ({ row }) => <div className="font-medium">{row.getValue("invoiceNumber")}</div>,
-  },
-  {
     accessorKey: "date",
     header: ({ column }) => (
       <Button
@@ -78,7 +61,7 @@ const columns: ColumnDef<BillingItem>[] = [
         onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         className="font-medium p-0 h-auto"
       >
-        Date
+        Statement Date
         {column.getIsSorted() === "asc" ? (
           <ChevronUp className="ml-2 h-4 w-4" />
         ) : column.getIsSorted() === "desc" ? (
@@ -88,6 +71,35 @@ const columns: ColumnDef<BillingItem>[] = [
         )}
       </Button>
     ),
+    cell: ({ row }) => {
+      // Format date as MM/DD/YYYY
+      const date = new Date(row.getValue("date"));
+      return <div className="font-medium">{format(date, "MM/dd/yyyy")}</div>;
+    },
+  },
+  {
+    accessorKey: "dueDate",
+    header: ({ column }) => (
+      <Button
+        variant="ghost"
+        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        className="font-medium p-0 h-auto"
+      >
+        Due Date
+        {column.getIsSorted() === "asc" ? (
+          <ChevronUp className="ml-2 h-4 w-4" />
+        ) : column.getIsSorted() === "desc" ? (
+          <ChevronDown className="ml-2 h-4 w-4" />
+        ) : (
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        )}
+      </Button>
+    ),
+    cell: ({ row }) => {
+      // Format date as MM/DD/YYYY
+      const date = new Date(row.getValue("dueDate"));
+      return <div>{format(date, "MM/dd/yyyy")}</div>;
+    },
   },
   {
     accessorKey: "period",
@@ -218,6 +230,9 @@ export function BillingHistoryTable({ billingHistory }: BillingHistoryTableProps
     pageSize: 20,
   })
   
+  // Add this state for date range
+  const [dateRange, setDateRange] = useState<DateRange | undefined>(undefined)
+  
   // Handle status filter change
   const handleStatusFilterChange = (value: string) => {
     setStatusFilter(value)
@@ -226,6 +241,40 @@ export function BillingHistoryTable({ billingHistory }: BillingHistoryTableProps
     } else {
       table.getColumn("status")?.setFilterValue(value)
     }
+  }
+  
+  // Add this function to handle date range filtering
+  const handleDateRangeChange = (range: DateRange | undefined) => {
+    setDateRange(range)
+    
+    if (!range?.from) {
+      table.getColumn("date")?.setFilterValue(undefined)
+      return
+    }
+    
+    // Convert date strings to Date objects for comparison
+    table.getColumn("date")?.setFilterValue((value: string) => {
+      const dateValue = new Date(value)
+      
+      // If we have a start date but no end date, match only the start date
+      if (range.from && !range.to) {
+        const from = new Date(range.from)
+        return (
+          dateValue.getFullYear() === from.getFullYear() &&
+          dateValue.getMonth() === from.getMonth() &&
+          dateValue.getDate() === from.getDate()
+        )
+      }
+      
+      // If we have both start and end dates, check if within range
+      if (range.from && range.to) {
+        const from = new Date(range.from)
+        const to = new Date(range.to)
+        return dateValue >= from && dateValue <= to
+      }
+      
+      return true
+    })
   }
   
   const table = useReactTable({
@@ -244,6 +293,12 @@ export function BillingHistoryTable({ billingHistory }: BillingHistoryTableProps
       columnFilters,
       columnVisibility,
       pagination,
+    },
+    filterFns: {
+      // Add custom filter function for date range
+      dateRange: (row, id, filterValue) => {
+        return filterValue(row.getValue(id))
+      },
     },
   })
   
@@ -269,17 +324,10 @@ export function BillingHistoryTable({ billingHistory }: BillingHistoryTableProps
               </SelectContent>
             </Select>
           </div>
-          <div className="relative w-80">
-            <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
-            <Input
-              placeholder="Search invoice number..."
-              className="pl-8"
-              value={(table.getColumn("invoiceNumber")?.getFilterValue() as string) ?? ""}
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-                table.getColumn("invoiceNumber")?.setFilterValue(event.target.value)
-              }
-            />
-          </div>
+          <DateRangePicker 
+            dateRange={dateRange}
+            onDateRangeChange={handleDateRangeChange}
+          />
         </div>
       </div>
       

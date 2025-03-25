@@ -4,9 +4,10 @@ import { useRouter } from "next/navigation"
 import { notFound } from "next/navigation"
 import { DashboardLayout } from "@/components/dashboard-layout"
 import { Button } from "@/components/ui/button"
-import { ChevronLeft, Download, CreditCard, Calendar, CheckCircle2, AlertCircle } from "lucide-react"
+import { ChevronLeft, Download, CreditCard, Calendar, CheckCircle2, AlertCircle, Receipt, PieChart } from "lucide-react"
 import { billingHistory } from "@/data/billing"
 import Link from "next/link"
+import { format } from "date-fns"
 
 interface BillingDetailsPageProps {
   params: {
@@ -66,11 +67,17 @@ export default function BillingDetailsPage({ params }: BillingDetailsPageProps) 
     }
   }
   
+  // Add a function to format dates consistently
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    return format(date, "MM/dd/yyyy");
+  }
+  
   return (
     <DashboardLayout>
-      <div className="flex flex-col space-y-8">
-        {/* Breadcrumb navigation */}
-        <div className="flex items-center space-x-1 text-sm text-muted-foreground">
+      <div className="space-y-6">
+        {/* Back Button */}
+        <div>
           <Button variant="outline" size="sm" asChild>
             <Link href="/billing">
               <ChevronLeft className="mr-2 h-4 w-4" />
@@ -80,55 +87,60 @@ export default function BillingDetailsPage({ params }: BillingDetailsPageProps) 
         </div>
         
         {/* Header */}
-        <div>
-          <h1 className="text-3xl font-bold text-slate-800 dark:text-slate-100">
-            Invoice #{billingItem.invoiceNumber}
-          </h1>
-          <div className="flex items-center gap-2 mt-2 text-slate-600 dark:text-slate-400">
-            <span>Issued on {billingItem.date}</span>
-            <span>•</span>
-            <div className="flex items-center gap-1">
-              {getStatusIcon()}
-              {getStatusText()}
-            </div>
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+          <div>
+            <h1 className="text-3xl font-bold text-slate-800 dark:text-slate-100">
+              Statement Date: {formatDate(billingItem.date)}
+            </h1>
           </div>
+          <Button variant="outline" size="sm">
+            <Download className="mr-2 h-4 w-4" />
+            Download
+          </Button>
         </div>
         
         {/* Content */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid gap-6 md:grid-cols-1">
           {/* Main invoice details */}
-          <div className="md:col-span-2 space-y-6">
+          <div className="space-y-6">
             {/* Summary card */}
             <div className="rounded-lg border bg-card p-6 shadow-sm">
+              <div className="flex items-center gap-2 mb-4">
+                <Receipt className="h-5 w-5 text-muted-foreground" />
+                <h2 className="text-xl font-semibold text-slate-800 dark:text-slate-100">Summary</h2>
+              </div>
               <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
                 <div>
                   <h2 className="text-xl font-semibold text-slate-800 dark:text-slate-100">
                     {formatCurrency(billingItem.amount)}
                   </h2>
-                  <p className="text-slate-600 dark:text-slate-400">
-                    For coverage period: {billingItem.period}
-                  </p>
+                  <div className="flex items-center gap-2">
+                    <p className="text-slate-600 dark:text-slate-400">
+                      For coverage period: {billingItem.period}
+                    </p>
+                    <span>•</span>
+                    <div className="flex items-center gap-1">
+                      {getStatusIcon()}
+                      {getStatusText()}
+                    </div>
+                  </div>
                 </div>
-                <Button className="mt-4 md:mt-0" size="sm">
-                  <Download className="h-4 w-4 mr-2" />
-                  Download PDF
-                </Button>
               </div>
               
               <div className="border-t pt-4">
                 <dl className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <dt className="text-sm font-medium text-muted-foreground">Due Date</dt>
-                    <dd className="text-slate-800 dark:text-slate-100">{billingItem.dueDate}</dd>
+                  <div className="grid grid-cols-2 gap-1 text-base">
+                    <dt className="text-muted-foreground">Due Date:</dt>
+                    <dd className="font-medium text-slate-800 dark:text-slate-100">{formatDate(billingItem.dueDate)}</dd>
                   </div>
-                  <div>
-                    <dt className="text-sm font-medium text-muted-foreground">Payment Method</dt>
-                    <dd className="text-slate-800 dark:text-slate-100">{billingItem.paymentMethod}</dd>
+                  <div className="grid grid-cols-2 gap-1 text-base">
+                    <dt className="text-muted-foreground">Payment Method:</dt>
+                    <dd className="font-medium text-slate-800 dark:text-slate-100">{billingItem.paymentMethod}</dd>
                   </div>
                   {billingItem.paymentDate && (
-                    <div>
-                      <dt className="text-sm font-medium text-muted-foreground">Payment Date</dt>
-                      <dd className="text-slate-800 dark:text-slate-100">{billingItem.paymentDate}</dd>
+                    <div className="grid grid-cols-2 gap-1 text-base">
+                      <dt className="text-muted-foreground">Payment Date:</dt>
+                      <dd className="font-medium text-slate-800 dark:text-slate-100">{formatDate(billingItem.paymentDate)}</dd>
                     </div>
                   )}
                 </dl>
@@ -137,23 +149,24 @@ export default function BillingDetailsPage({ params }: BillingDetailsPageProps) 
             
             {/* Coverage details */}
             <div className="rounded-lg border bg-card p-6 shadow-sm">
-              <h2 className="text-lg font-semibold mb-4 text-slate-800 dark:text-slate-100">
-                Coverage Details
-              </h2>
+              <div className="flex items-center gap-2 mb-4">
+                <PieChart className="h-5 w-5 text-muted-foreground" />
+                <h2 className="text-xl font-semibold text-slate-800 dark:text-slate-100">Breakdown</h2>
+              </div>
               <div className="space-y-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <h3 className="text-sm font-medium text-muted-foreground">Primary Coverage</h3>
-                    <p className="text-slate-800 dark:text-slate-100">Health Insurance - Family Plan</p>
+                  <div className="grid grid-cols-2 gap-1 text-base">
+                    <h3 className="text-muted-foreground">Primary Coverage:</h3>
+                    <p className="font-medium text-slate-800 dark:text-slate-100">Health Insurance - Family Plan</p>
                   </div>
-                  <div>
-                    <h3 className="text-sm font-medium text-muted-foreground">Dependents Covered</h3>
-                    <p className="text-slate-800 dark:text-slate-100">3</p>
+                  <div className="grid grid-cols-2 gap-1 text-base">
+                    <h3 className="text-muted-foreground">Dependents Covered:</h3>
+                    <p className="font-medium text-slate-800 dark:text-slate-100">3</p>
                   </div>
                 </div>
                 
                 <div className="border-t pt-4">
-                  <h3 className="text-sm font-medium text-muted-foreground mb-2">Coverage Breakdown</h3>
+                  <h3 className="text-base text-muted-foreground mb-2">Coverage Breakdown:</h3>
                   <table className="w-full text-sm">
                     <thead>
                       <tr className="border-b">
@@ -182,77 +195,6 @@ export default function BillingDetailsPage({ params }: BillingDetailsPageProps) 
                   </table>
                 </div>
               </div>
-            </div>
-          </div>
-          
-          {/* Sidebar */}
-          <div className="space-y-6">
-            {/* Payment status card */}
-            <div className="rounded-lg border bg-card p-6 shadow-sm">
-              <h2 className="text-lg font-semibold mb-4 text-slate-800 dark:text-slate-100">
-                Payment Status
-              </h2>
-              
-              {billingItem.status === "paid" ? (
-                <div className="flex items-start gap-4 p-4 rounded-lg bg-green-50 dark:bg-green-950">
-                  <CheckCircle2 className="h-5 w-5 text-green-600 dark:text-green-400 mt-0.5" />
-                  <div>
-                    <h3 className="font-medium text-green-800 dark:text-green-300">Payment Complete</h3>
-                    <p className="text-sm text-green-700 dark:text-green-400">
-                      This invoice was paid on {billingItem.paymentDate}.
-                    </p>
-                  </div>
-                </div>
-              ) : billingItem.status === "pending" ? (
-                <div className="flex items-start gap-4 p-4 rounded-lg bg-yellow-50 dark:bg-yellow-950">
-                  <Calendar className="h-5 w-5 text-yellow-600 dark:text-yellow-400 mt-0.5" />
-                  <div>
-                    <h3 className="font-medium text-yellow-800 dark:text-yellow-300">Payment Due</h3>
-                    <p className="text-sm text-yellow-700 dark:text-yellow-400">
-                      Payment is due by {billingItem.dueDate}.
-                    </p>
-                  </div>
-                </div>
-              ) : billingItem.status === "overdue" ? (
-                <div className="flex items-start gap-4 p-4 rounded-lg bg-red-50 dark:bg-red-950">
-                  <AlertCircle className="h-5 w-5 text-red-600 dark:text-red-400 mt-0.5" />
-                  <div>
-                    <h3 className="font-medium text-red-800 dark:text-red-300">Payment Overdue</h3>
-                    <p className="text-sm text-red-700 dark:text-red-400">
-                      Payment was due on {billingItem.dueDate}.
-                    </p>
-                  </div>
-                </div>
-              ) : (
-                <div className="flex items-start gap-4 p-4 rounded-lg bg-blue-50 dark:bg-blue-950">
-                  <CreditCard className="h-5 w-5 text-blue-600 dark:text-blue-400 mt-0.5" />
-                  <div>
-                    <h3 className="font-medium text-blue-800 dark:text-blue-300">Payment Processing</h3>
-                    <p className="text-sm text-blue-700 dark:text-blue-400">
-                      Your payment is being processed.
-                    </p>
-                  </div>
-                </div>
-              )}
-              
-              {billingItem.status !== "paid" && (
-                <Button className="w-full mt-4">
-                  Pay Now
-                </Button>
-              )}
-            </div>
-            
-            {/* Support card */}
-            <div className="rounded-lg border bg-card p-6 shadow-sm">
-              <h2 className="text-lg font-semibold mb-4 text-slate-800 dark:text-slate-100">
-                Need Help?
-              </h2>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mb-4">
-                If you have any questions about this invoice, please contact our support team.
-              </p>
-              <Button variant="outline" className="w-full">
-                Contact Support
-              </Button>
             </div>
           </div>
         </div>

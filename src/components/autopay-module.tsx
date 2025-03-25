@@ -57,7 +57,7 @@ export function AutopayModule({ settings }: AutopayModuleProps) {
     <Card>
       <CardHeader>
         <div className="flex items-center justify-between">
-          <CardTitle>Autopay Settings</CardTitle>
+          <CardTitle>Autopay</CardTitle>
           <div className="flex items-center gap-2">
             <span className="text-sm text-muted-foreground">
               {autopayEnabled ? 'Enabled' : 'Disabled'}
@@ -79,10 +79,15 @@ export function AutopayModule({ settings }: AutopayModuleProps) {
             <div className="flex items-start gap-4 p-4 rounded-lg bg-blue-50 dark:bg-blue-950">
               <RefreshCw className="h-5 w-5 text-blue-600 dark:text-blue-400 mt-0.5" />
               <div>
-                <h3 className="font-medium text-blue-800 dark:text-blue-300">Next Automatic Payment</h3>
-                <p className="text-sm text-blue-700 dark:text-blue-400">
-                  {formatCurrency(settings.nextPaymentAmount)} will be charged on {settings.nextPaymentDate}
-                </p>
+                <h3 className="font-medium text-blue-800 dark:text-blue-300">Next Payment</h3>
+                <div className="flex flex-col space-y-1">
+                  <span className="text-xl font-semibold text-blue-800 dark:text-blue-300">
+                    {formatCurrency(settings.nextPaymentAmount)}
+                  </span>
+                  <p className="text-sm text-blue-700 dark:text-blue-400">
+                    Will be charged on {settings.nextPaymentDate}
+                  </p>
+                </div>
               </div>
             </div>
             
@@ -109,12 +114,9 @@ export function AutopayModule({ settings }: AutopayModuleProps) {
           </div>
         )}
       </CardContent>
-      <CardFooter className="flex justify-between">
-        <Button variant="outline" size="sm">
+      <CardFooter>
+        <Button variant="outline" size="sm" className="w-full">
           Update Payment Method
-        </Button>
-        <Button variant="outline" size="sm">
-          View Billing FAQs
         </Button>
       </CardFooter>
       
@@ -129,8 +131,15 @@ export function AutopayModule({ settings }: AutopayModuleProps) {
           </DialogHeader>
           <div className="flex items-start gap-4 p-4 rounded-lg bg-amber-50 dark:bg-amber-950">
             <AlertCircle className="h-5 w-5 text-amber-600 dark:text-amber-400 mt-0.5" />
-            <div className="text-sm text-amber-700 dark:text-amber-400">
-              Your next bill of {formatCurrency(settings.nextPaymentAmount)} is due on {settings.nextPaymentDate}.
+            <div>
+              <div className="flex flex-col space-y-1">
+                <span className="text-xl font-semibold text-amber-800 dark:text-amber-300">
+                  {formatCurrency(settings.nextPaymentAmount)}
+                </span>
+                <p className="text-sm text-amber-700 dark:text-amber-400">
+                  Due on {settings.nextPaymentDate}
+                </p>
+              </div>
             </div>
           </div>
           <DialogFooter>
