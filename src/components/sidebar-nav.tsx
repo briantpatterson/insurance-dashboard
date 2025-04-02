@@ -11,7 +11,6 @@ import {
   FileText,
   Calendar,
   Briefcase,
-  BookOpen,
   FileIcon,
   HelpCircle,
   BarChart,
@@ -104,11 +103,6 @@ export const sidebarNavItems = [
     title: "Accommodations",
     href: "/accommodations",
     icon: <Briefcase className="h-5 w-5" />,
-  },
-  {
-    title: "Policies",
-    href: "/policies",
-    icon: <BookOpen className="h-5 w-5" />,
   },
   {
     title: "Documents",

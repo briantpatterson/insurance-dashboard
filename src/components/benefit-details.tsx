@@ -18,7 +18,8 @@ import {
   Globe,
   Mail,
   ChevronLeft,
-  Download
+  Download,
+  Pill
 } from "lucide-react"
 
 interface BenefitDetailsProps {
@@ -40,7 +41,7 @@ export function BenefitDetails({ benefit }: BenefitDetailsProps) {
       case "dental":
         return (
           <div className="p-3 rounded-full bg-blue-100 dark:bg-blue-900">
-            <Stethoscope className="h-6 w-6 text-blue-600 dark:text-blue-300" />
+            <Pill className="h-6 w-6 text-blue-600 dark:text-blue-300" />
           </div>
         )
       case "vision":
@@ -118,16 +119,14 @@ export function BenefitDetails({ benefit }: BenefitDetailsProps) {
   
   return (
     <div className="flex flex-col space-y-8">
-      {/* Breadcrumb navigation */}
-      <div className="flex items-center space-x-1 text-sm text-muted-foreground">
-        <Button 
-          variant="ghost" 
-          size="sm" 
-          className="h-8 gap-1"
-          onClick={() => router.push("/benefits")}
-        >
-          <ChevronLeft className="h-4 w-4" />
+      {/* Back Button and Action Button */}
+      <div className="flex items-center justify-between">
+        <Button variant="outline" size="sm" onClick={() => router.push("/benefits")}>
+          <ChevronLeft className="mr-2 h-4 w-4" />
           Back to Benefits
+        </Button>
+        <Button>
+          Request Policy Changes
         </Button>
       </div>
       
@@ -298,16 +297,24 @@ export function BenefitDetails({ benefit }: BenefitDetailsProps) {
           
           <Card>
             <CardHeader>
-              <CardTitle>Need Help?</CardTitle>
+              <CardTitle>Enhance Your Protection</CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-sm text-slate-600 dark:text-slate-400 mb-4">
-                If you have questions about your benefits or need to make changes to your coverage, 
-                please contact your HR representative.
+                Complement your coverage with additional insurance options to protect what matters most.
+                Explore our supplemental products including Life, Accident, and Cancer insurance.
               </p>
-              <Button variant="outline" className="w-full">
-                Contact HR
-              </Button>
+              <div className="space-y-3">
+                <Button variant="secondary" className="w-full">
+                  Learn more
+                </Button>
+                <p className="text-sm text-slate-600 dark:text-slate-400 mt-4 mb-2">
+                  Interested in Accident and Cancer insurance coverage?
+                </p>
+                <Button variant="outline" className="w-full">
+                  Learn more about Accident & Cancer
+                </Button>
+              </div>
             </CardContent>
           </Card>
         </div>

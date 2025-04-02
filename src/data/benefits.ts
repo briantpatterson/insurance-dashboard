@@ -34,7 +34,7 @@ export const benefits: Benefit[] = [
   {
     id: "dental-001",
     type: "dental",
-    title: "Dental Coverage",
+    title: "Dental",
     description: "Comprehensive dental coverage including preventive care, basic procedures, and major procedures.",
     status: "active",
     effectiveStartDate: "2025-01-01",
@@ -72,7 +72,7 @@ export const benefits: Benefit[] = [
   {
     id: "vision-001",
     type: "vision",
-    title: "Vision Coverage",
+    title: "Vision",
     description: "Vision care benefits including eye exams, glasses, and contact lenses.",
     status: "active",
     effectiveStartDate: "2025-01-01",

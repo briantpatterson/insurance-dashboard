@@ -162,45 +162,64 @@ export default function BillingDetailsPage({ params }: BillingDetailsPageProps) 
                 <h2 className="text-xl font-semibold text-slate-800 dark:text-slate-100">Breakdown</h2>
               </div>
               <div className="space-y-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="grid grid-cols-2 gap-1 text-base">
-                    <h3 className="text-muted-foreground">Primary Coverage:</h3>
-                    <p className="font-medium text-slate-800 dark:text-slate-100">Health Insurance - Family Plan</p>
-                  </div>
-                  <div className="grid grid-cols-2 gap-1 text-base">
-                    <h3 className="text-muted-foreground">Dependents Covered:</h3>
-                    <p className="font-medium text-slate-800 dark:text-slate-100">3</p>
-                  </div>
-                </div>
-                
                 <div className="border-t pt-4">
-                  <h3 className="text-base text-muted-foreground mb-2">Coverage Breakdown:</h3>
-                  <table className="w-full text-sm">
-                    <thead>
-                      <tr className="border-b">
-                        <th className="text-left py-2 font-medium text-muted-foreground">Coverage Type</th>
-                        <th className="text-right py-2 font-medium text-muted-foreground">Amount</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr className="border-b">
-                        <td className="py-2 text-slate-800 dark:text-slate-100">Health Insurance</td>
-                        <td className="py-2 text-right text-slate-800 dark:text-slate-100">{formatCurrency(billingItem.amount * 0.7)}</td>
-                      </tr>
-                      <tr className="border-b">
-                        <td className="py-2 text-slate-800 dark:text-slate-100">Dental Coverage</td>
-                        <td className="py-2 text-right text-slate-800 dark:text-slate-100">{formatCurrency(billingItem.amount * 0.2)}</td>
-                      </tr>
-                      <tr className="border-b">
-                        <td className="py-2 text-slate-800 dark:text-slate-100">Vision Coverage</td>
-                        <td className="py-2 text-right text-slate-800 dark:text-slate-100">{formatCurrency(billingItem.amount * 0.1)}</td>
-                      </tr>
-                      <tr>
-                        <td className="py-2 font-medium text-slate-800 dark:text-slate-100">Total</td>
-                        <td className="py-2 text-right font-medium text-slate-800 dark:text-slate-100">{formatCurrency(billingItem.amount)}</td>
-                      </tr>
-                    </tbody>
-                  </table>
+                  <h3 className="text-base text-muted-foreground mb-4">Coverage Breakdown:</h3>
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-sm">
+                      <thead>
+                        <tr className="border-b">
+                          <th className="text-left py-2 font-medium text-muted-foreground">Coverage Type</th>
+                          <th className="text-center py-2 font-medium text-muted-foreground">Additions</th>
+                          <th className="text-center py-2 font-medium text-muted-foreground">Terminations</th>
+                          <th className="text-center py-2 font-medium text-muted-foreground">Total Insured</th>
+                          <th className="text-center py-2 font-medium text-muted-foreground">Premium Amount</th>
+                          <th className="text-right py-2 font-medium text-muted-foreground">Premium Adjustments</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr className="border-b">
+                          <td className="py-2 text-slate-800 dark:text-slate-100">Dental Coverage</td>
+                          <td className="py-2 text-center text-slate-800 dark:text-slate-100">0</td>
+                          <td className="py-2 text-center text-slate-800 dark:text-slate-100">0</td>
+                          <td className="py-2 text-center text-slate-800 dark:text-slate-100">4</td>
+                          <td className="py-2 text-center text-slate-800 dark:text-slate-100">{formatCurrency(billingItem.amount * 0.25)}</td>
+                          <td className="py-2 text-right text-slate-800 dark:text-slate-100">$0.00</td>
+                        </tr>
+                        <tr className="border-b">
+                          <td className="py-2 text-slate-800 dark:text-slate-100">Vision Coverage</td>
+                          <td className="py-2 text-center text-slate-800 dark:text-slate-100">0</td>
+                          <td className="py-2 text-center text-slate-800 dark:text-slate-100">0</td>
+                          <td className="py-2 text-center text-slate-800 dark:text-slate-100">4</td>
+                          <td className="py-2 text-center text-slate-800 dark:text-slate-100">{formatCurrency(billingItem.amount * 0.15)}</td>
+                          <td className="py-2 text-right text-slate-800 dark:text-slate-100">$0.00</td>
+                        </tr>
+                        <tr className="border-b">
+                          <td className="py-2 text-slate-800 dark:text-slate-100">Short Term Disability</td>
+                          <td className="py-2 text-center text-slate-800 dark:text-slate-100">0</td>
+                          <td className="py-2 text-center text-slate-800 dark:text-slate-100">0</td>
+                          <td className="py-2 text-center text-slate-800 dark:text-slate-100">1</td>
+                          <td className="py-2 text-center text-slate-800 dark:text-slate-100">{formatCurrency(billingItem.amount * 0.3)}</td>
+                          <td className="py-2 text-right text-slate-800 dark:text-slate-100">$0.00</td>
+                        </tr>
+                        <tr className="border-b">
+                          <td className="py-2 text-slate-800 dark:text-slate-100">Long Term Disability</td>
+                          <td className="py-2 text-center text-slate-800 dark:text-slate-100">0</td>
+                          <td className="py-2 text-center text-slate-800 dark:text-slate-100">0</td>
+                          <td className="py-2 text-center text-slate-800 dark:text-slate-100">1</td>
+                          <td className="py-2 text-center text-slate-800 dark:text-slate-100">{formatCurrency(billingItem.amount * 0.3)}</td>
+                          <td className="py-2 text-right text-slate-800 dark:text-slate-100">$0.00</td>
+                        </tr>
+                        <tr>
+                          <td className="py-3 font-medium text-slate-800 dark:text-slate-100">Total</td>
+                          <td className="py-3 text-center font-medium text-slate-800 dark:text-slate-100"></td>
+                          <td className="py-3 text-center font-medium text-slate-800 dark:text-slate-100"></td>
+                          <td className="py-3 text-center font-medium text-slate-800 dark:text-slate-100"></td>
+                          <td className="py-3 text-center font-medium text-slate-800 dark:text-slate-100">{formatCurrency(billingItem.amount)}</td>
+                          <td className="py-3 text-right font-medium text-slate-800 dark:text-slate-100">$0.00</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
               </div>
             </div>

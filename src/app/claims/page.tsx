@@ -18,7 +18,7 @@ export default function ClaimsPage() {
           <div className="flex items-center gap-2">
             <Button variant="outline" size="sm" className="h-9">
               <Download className="h-4 w-4 mr-2" />
-              Export
+              Download
             </Button>
             <Button size="sm" className="h-9">
               <PlusCircle className="h-4 w-4 mr-2" />

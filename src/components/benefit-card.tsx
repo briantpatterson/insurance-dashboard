@@ -5,14 +5,15 @@ import { Benefit } from "@/data/benefits"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardFooter } from "@/components/ui/card"
 import { 
-  Stethoscope, 
   Eye, 
   Clock, 
   Calendar, 
   ShieldCheck, 
   Users, 
   User, 
-  FileText 
+  FileText,
+  Pill,
+  Laugh
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
@@ -35,7 +36,7 @@ export function BenefitCard({ benefit }: BenefitCardProps) {
       case "dental":
         return (
           <div className="p-2 rounded-full bg-blue-100 dark:bg-blue-900">
-            <Stethoscope className="h-5 w-5 text-blue-600 dark:text-blue-300" />
+            <Laugh className="h-5 w-5 text-blue-600 dark:text-blue-300" />
           </div>
         )
       case "vision":
@@ -134,6 +135,25 @@ export function BenefitCard({ benefit }: BenefitCardProps) {
               {benefit.coverageLevel === "family" ? "Family Coverage" : "Individual Coverage"}
             </span>
           </div>
+          
+          {/* Network information for dental and vision */}
+          {benefit.type === "dental" && (
+            <div className="flex items-center gap-2 text-sm">
+              <ShieldCheck className="h-4 w-4 text-muted-foreground" />
+              <span className="text-slate-600 dark:text-slate-400">
+                Dental PPO
+              </span>
+            </div>
+          )}
+          
+          {benefit.type === "vision" && (
+            <div className="flex items-center gap-2 text-sm">
+              <ShieldCheck className="h-4 w-4 text-muted-foreground" />
+              <span className="text-slate-600 dark:text-slate-400">
+                VSP Network
+              </span>
+            </div>
+          )}
           
           {benefit.fmlaEligible && (
             <div className="flex items-center gap-2 text-sm">

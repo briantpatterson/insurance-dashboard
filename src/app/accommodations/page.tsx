@@ -2,7 +2,6 @@
 
 import { accommodations } from "@/data/accommodations"
 import { AccommodationsTable } from "@/components/accommodations-table"
-import { ADAResources } from "@/components/ada-resources"
 import { DashboardLayout } from "@/components/dashboard-layout"
 import { Button } from "@/components/ui/button"
 import { PlusCircle } from "lucide-react"
@@ -24,14 +23,8 @@ export default function AccommodationsPage() {
           </p>
         </div>
         
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <div className="lg:col-span-2">
-            <AccommodationsTable accommodations={accommodations} />
-          </div>
-          
-          <div className="lg:col-span-1">
-            <ADAResources />
-          </div>
+        <div>
+          <AccommodationsTable accommodations={accommodations} />
         </div>
       </div>
     </DashboardLayout>

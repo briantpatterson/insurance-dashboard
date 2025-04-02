@@ -47,6 +47,47 @@ export function formatDate(date: string): string {
   return format(new Date(date), "MMM d, yyyy")
 }
 
+// Helper function to get status badge styling
+export const getAccommodationStatusColor = (status: AccommodationStatus): string => {
+  switch (status) {
+    case "pending":
+      return "text-yellow-600 dark:text-yellow-400 bg-yellow-50 dark:bg-yellow-950 border-yellow-200 dark:border-yellow-800";
+    case "approved":
+      return "text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950 border-blue-200 dark:border-blue-800";
+    case "denied":
+      return "text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-950 border-red-200 dark:border-red-800";
+    case "implemented":
+      return "text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 border-green-200 dark:border-green-800";
+    case "under review":
+      return "text-purple-600 dark:text-purple-400 bg-purple-50 dark:bg-purple-950 border-purple-200 dark:border-purple-800";
+    default:
+      return "text-slate-600 dark:text-slate-400 bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700";
+  }
+};
+
+// Helper function to get formatted status display
+export const getAccommodationStatusDisplay = (status: AccommodationStatus): string => {
+  switch (status) {
+    case "pending":
+      return "Pending";
+    case "approved":
+      return "Approved";
+    case "denied":
+      return "Denied";
+    case "implemented":
+      return "Implemented";
+    case "under review":
+      return "Under Review";
+    default:
+      return status;
+  }
+};
+
+// Helper function to get formatted accommodation type display
+export const getAccommodationTypeDisplay = (type: AccommodationType): string => {
+  return type.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+};
+
 // Mock data
 export const accommodations: Accommodation[] = [
   {

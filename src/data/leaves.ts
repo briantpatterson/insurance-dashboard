@@ -44,6 +44,42 @@ export function calculateLeaveDuration(startDate: string, endDate: string): numb
   return Math.floor((end.getTime() - start.getTime()) / (1000 * 60 * 60 * 24)) + 1;
 }
 
+// Helper function to get status badge styling
+export const getLeaveStatusColor = (status: LeaveStatus): string => {
+  switch (status) {
+    case "pending":
+      return "text-yellow-600 dark:text-yellow-400 bg-yellow-50 dark:bg-yellow-950 border-yellow-200 dark:border-yellow-800";
+    case "approved":
+      return "text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-950 border-blue-200 dark:border-blue-800";
+    case "denied":
+      return "text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-950 border-red-200 dark:border-red-800";
+    case "completed":
+      return "text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-950 border-green-200 dark:border-green-800";
+    case "cancelled":
+      return "text-slate-600 dark:text-slate-400 bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700";
+    default:
+      return "text-slate-600 dark:text-slate-400 bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700";
+  }
+};
+
+// Helper function to get formatted status display
+export const getLeaveStatusDisplay = (status: LeaveStatus): string => {
+  switch (status) {
+    case "pending":
+      return "Pending";
+    case "approved":
+      return "Approved";
+    case "denied":
+      return "Denied";
+    case "completed":
+      return "Completed";
+    case "cancelled":
+      return "Cancelled";
+    default:
+      return status;
+  }
+};
+
 export const leaves: Leave[] = [
   {
     id: "leave-001",
