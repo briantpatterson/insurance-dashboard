@@ -72,7 +72,7 @@ export default function DocumentsPage() {
       <div className="flex flex-col space-y-8">
         <div className="flex flex-col space-y-2">
           <div className="flex items-center justify-between">
-            <h1 className="text-3xl font-bold tracking-tight">Documents & Forms</h1>
+            <h1 className="text-3xl font-bold tracking-tight">Documents</h1>
             <div className="relative w-64">
               <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
               <Input

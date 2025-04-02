@@ -24,7 +24,7 @@ export default function LeavesPage() {
             </Button>
             <Button size="sm" className="h-9">
               <PlusCircle className="h-4 w-4 mr-2" />
-              New Leave Request
+              New Leave
             </Button>
           </div>
         </div>

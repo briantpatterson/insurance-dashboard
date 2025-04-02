@@ -9,18 +9,20 @@ import { PlusCircle } from "lucide-react"
 export default function AccommodationsPage() {
   return (
     <DashboardLayout>
-      <div className="flex flex-col space-y-8">
-        <div className="flex flex-col space-y-2">
-          <div className="flex items-center justify-between">
-            <h1 className="text-3xl font-bold tracking-tight">Accommodations</h1>
-            <Button className="flex items-center gap-2">
-              <PlusCircle className="h-4 w-4" />
-              <span>New Accommodation</span>
+      <div className="space-y-6">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div>
+            <h1 className="text-3xl font-bold">Accommodations</h1>
+            <p className="text-muted-foreground mt-2">
+              Manage and track employee accommodation requests under the Americans with Disabilities Act (ADA).
+            </p>
+          </div>
+          <div className="flex items-center gap-2">
+            <Button size="sm" className="h-9">
+              <PlusCircle className="h-4 w-4 mr-2" />
+              New Accommodation
             </Button>
           </div>
-          <p className="text-muted-foreground">
-            Manage and track employee accommodation requests under the Americans with Disabilities Act (ADA).
-          </p>
         </div>
         
         <div>
