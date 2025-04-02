@@ -108,4 +108,81 @@
   .clickable {
     cursor: pointer;
   }
+}
+
+/* Calendar specific styles */
+.calendar-container {
+  width: 100%;
+  padding: 0.5rem;
+}
+
+.rdp {
+  width: 100%;
+  --rdp-cell-size: 40px;
+  margin: 0;
+}
+
+.rdp-months {
+  width: 100%;
+  justify-content: center;
+}
+
+.rdp-month {
+  width: 100%;
+  max-width: 100%;
+}
+
+.rdp-caption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+  text-align: center;
+}
+
+.rdp-caption_label {
+  flex: 1;
+  text-align: center;
+  font-weight: 500;
+}
+
+.rdp-nav {
+  white-space: nowrap;
+}
+
+.rdp-head_row {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.rdp-head_cell {
+  width: var(--rdp-cell-size);
+  text-align: center;
+  font-weight: 500;
+  color: var(--muted-foreground);
+}
+
+.rdp-row {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.rdp-cell {
+  width: var(--rdp-cell-size);
+  height: var(--rdp-cell-size);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rdp-day {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  width: var(--rdp-cell-size);
+  height: var(--rdp-cell-size);
 } 

@@ -1,10 +1,20 @@
+"use client"
+
 import { DashboardLayout } from "@/components/dashboard-layout"
 import { employees } from "@/data/employees"
 import { notFound } from "next/navigation"
 import Link from "next/link"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { ChevronLeft, ChevronRight, Home, User, Calendar, Users, Shield } from "lucide-react"
+import { ChevronLeft, User, Calendar, Users, Shield, Download, CalendarIcon } from "lucide-react"
+import { useState } from "react"
+import { format } from "date-fns"
+import { Calendar as CalendarComponent } from "@/components/ui/calendar"
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover"
 
 // Define coverage type colors for light and dark modes
 const coverageColors: Record<string, string> = {
@@ -53,26 +63,15 @@ export default function EmployeeDetailsPage({ params }: { params: { id: string }
     notFound()
   }
   
+  // State for the date picker
+  const [date, setDate] = useState<Date>(new Date(2025, 4, 1)) // May 1, 2025
+  
   // Get dependents for this employee (in a real app, this would come from the API)
   const dependents = employee.dependents > 0 ? mockDependents.slice(0, employee.dependents) : []
   
   return (
     <DashboardLayout>
       <div className="space-y-6">
-        {/* Breadcrumb Navigation */}
-        <nav className="flex items-center space-x-2 text-sm text-muted-foreground">
-          <Link href="/" className="hover:text-foreground">
-            <Home className="h-4 w-4" />
-            <span className="sr-only">Home</span>
-          </Link>
-          <ChevronRight className="h-4 w-4" />
-          <Link href="/employees" className="hover:text-foreground">
-            Employees
-          </Link>
-          <ChevronRight className="h-4 w-4" />
-          <span className="text-foreground font-medium">{employee.name}</span>
-        </nav>
-        
         {/* Back Button */}
         <div>
           <Button variant="outline" size="sm" asChild>
@@ -87,51 +86,89 @@ export default function EmployeeDetailsPage({ params }: { params: { id: string }
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
           <div>
             <h1 className="text-3xl font-bold">{employee.name}</h1>
-            <p className="text-muted-foreground">
-              Member ID: {employee.memberId}
+            <p className="text-muted-foreground flex items-center">
+              Showing benefits as of{" "}
+              <Popover>
+                <PopoverTrigger asChild>
+                  <button className="inline-flex items-center ml-1 text-primary hover:underline">
+                    {format(date, "MM/dd/yyyy")}
+                    <CalendarIcon className="ml-1 h-3 w-3" />
+                  </button>
+                </PopoverTrigger>
+                <PopoverContent className="rounded-md border shadow" align="start">
+                  <CalendarComponent
+                    mode="single"
+                    selected={date}
+                    onSelect={(newDate) => newDate && setDate(newDate)}
+                    initialFocus
+                    className="rounded-md border shadow"
+                  />
+                </PopoverContent>
+              </Popover>
             </p>
           </div>
-          <Badge variant="outline" className={getLeaveStatusClass(employee.leaveStatus)}>
-            {employee.leaveStatus}
-          </Badge>
+          <Button variant="outline" size="sm">
+            <Download className="mr-2 h-4 w-4" />
+            Download
+          </Button>
         </div>
         
         {/* Employee Information */}
         <div className="grid gap-6 md:grid-cols-2">
-          {/* Basic Information */}
+          {/* Employee Details */}
           <div className="rounded-lg border bg-card p-6 shadow-sm">
             <div className="flex items-center gap-2 mb-4">
               <User className="h-5 w-5 text-muted-foreground" />
-              <h2 className="text-xl font-semibold">Basic Information</h2>
+              <h2 className="text-xl font-semibold">Employee Details</h2>
             </div>
             <dl className="grid gap-2">
-              <div className="grid grid-cols-2 gap-1">
+              <div className="grid grid-cols-2 gap-1 text-base">
                 <dt className="text-muted-foreground">Member ID:</dt>
                 <dd className="font-medium">{employee.memberId}</dd>
               </div>
-              <div className="grid grid-cols-2 gap-1">
-                <dt className="text-muted-foreground">Leave Status:</dt>
-                <dd>
-                  <Badge variant="outline" className={getLeaveStatusClass(employee.leaveStatus)}>
-                    {employee.leaveStatus}
-                  </Badge>
-                </dd>
+              <div className="grid grid-cols-2 gap-1 text-base">
+                <dt className="text-muted-foreground">Group ID:</dt>
+                <dd className="font-medium">12345678</dd>
               </div>
-              <div className="grid grid-cols-2 gap-1">
-                <dt className="text-muted-foreground">Dependents:</dt>
-                <dd className="font-medium">{employee.dependents}</dd>
+              <div className="grid grid-cols-2 gap-1 text-base">
+                <dt className="text-muted-foreground">Class:</dt>
+                <dd className="font-medium">0001 - All Eligible Employees</dd>
               </div>
-              <div className="grid grid-cols-2 gap-1">
-                <dt className="text-muted-foreground">Hire Date:</dt>
+              <div className="grid grid-cols-2 gap-1 text-base">
+                <dt className="text-muted-foreground">Gender:</dt>
+                <dd className="font-medium">Male</dd>
+              </div>
+              <div className="grid grid-cols-2 gap-1 text-base">
+                <dt className="text-muted-foreground">Date of Birth:</dt>
+                <dd className="font-medium">05/12/1980</dd>
+              </div>
+              <div className="grid grid-cols-2 gap-1 text-base">
+                <dt className="text-muted-foreground">Date of Full-Time Hire:</dt>
                 <dd className="font-medium">01/15/2022</dd>
               </div>
-              <div className="grid grid-cols-2 gap-1">
-                <dt className="text-muted-foreground">Department:</dt>
-                <dd className="font-medium">Engineering</dd>
+              <div className="grid grid-cols-2 gap-1 text-base">
+                <dt className="text-muted-foreground">Job Title:</dt>
+                <dd className="font-medium">Software Engineer</dd>
               </div>
-              <div className="grid grid-cols-2 gap-1">
-                <dt className="text-muted-foreground">Position:</dt>
-                <dd className="font-medium">Senior Developer</dd>
+              <div className="grid grid-cols-2 gap-1 text-base">
+                <dt className="text-muted-foreground">Annual Salary:</dt>
+                <dd className="font-medium">$85,000</dd>
+              </div>
+              <div className="grid grid-cols-2 gap-1 text-base">
+                <dt className="text-muted-foreground">Hours Worked Per Week:</dt>
+                <dd className="font-medium">40</dd>
+              </div>
+              <div className="grid grid-cols-2 gap-1 text-base">
+                <dt className="text-muted-foreground">Address:</dt>
+                <dd className="font-medium">123 Main St, Anytown, CA 94123</dd>
+              </div>
+              <div className="grid grid-cols-2 gap-1 text-base">
+                <dt className="text-muted-foreground">Phone:</dt>
+                <dd className="font-medium">(555) 123-4567</dd>
+              </div>
+              <div className="grid grid-cols-2 gap-1 text-base">
+                <dt className="text-muted-foreground">Email:</dt>
+                <dd className="font-medium">{employee.name.toLowerCase().replace(' ', '.')}@example.com</dd>
               </div>
             </dl>
           </div>
@@ -140,7 +177,7 @@ export default function EmployeeDetailsPage({ params }: { params: { id: string }
           <div className="rounded-lg border bg-card p-6 shadow-sm">
             <div className="flex items-center gap-2 mb-4">
               <Shield className="h-5 w-5 text-muted-foreground" />
-              <h2 className="text-xl font-semibold">Coverage Information</h2>
+              <h2 className="text-xl font-semibold">Benefit Details</h2>
             </div>
             <div className="space-y-4">
               {employee.coverage.map((coverage, index) => (
@@ -156,13 +193,17 @@ export default function EmployeeDetailsPage({ params }: { params: { id: string }
                       Active
                     </Badge>
                   </div>
-                  <div className="grid grid-cols-2 gap-1 text-sm">
-                    <span className="text-muted-foreground">Start Date:</span>
+                  <div className="grid grid-cols-2 gap-1 text-base">
+                    <span className="text-muted-foreground">Effective Date:</span>
                     <span className="font-medium">{coverageDates[coverage]?.startDate || "01/01/2025"}</span>
                   </div>
-                  <div className="grid grid-cols-2 gap-1 text-sm">
-                    <span className="text-muted-foreground">End Date:</span>
-                    <span className="font-medium">{coverageDates[coverage]?.endDate || "12/31/2025"}</span>
+                  <div className="grid grid-cols-2 gap-1 text-base">
+                    <span className="text-muted-foreground">Premium (Employee):</span>
+                    <span className="font-medium">$0.00</span>
+                  </div>
+                  <div className="grid grid-cols-2 gap-1 text-base">
+                    <span className="text-muted-foreground">Premium (Dependent):</span>
+                    <span className="font-medium">$0.00</span>
                   </div>
                 </div>
               ))}
@@ -183,17 +224,17 @@ export default function EmployeeDetailsPage({ params }: { params: { id: string }
                   <h3 className="font-medium text-lg mb-2">{dependent.name}</h3>
                   <div className="grid md:grid-cols-2 gap-4">
                     <div className="space-y-2">
-                      <div className="grid grid-cols-2 gap-1 text-sm">
+                      <div className="grid grid-cols-2 gap-1 text-base">
                         <span className="text-muted-foreground">Relationship:</span>
                         <span className="font-medium">{dependent.relationship}</span>
                       </div>
-                      <div className="grid grid-cols-2 gap-1 text-sm">
+                      <div className="grid grid-cols-2 gap-1 text-base">
                         <span className="text-muted-foreground">Date of Birth:</span>
                         <span className="font-medium">{dependent.dateOfBirth}</span>
                       </div>
                     </div>
                     <div>
-                      <span className="text-sm text-muted-foreground block mb-2">Coverage:</span>
+                      <span className="text-base text-muted-foreground block mb-2">Coverage:</span>
                       <div className="flex flex-wrap gap-1">
                         {dependent.coverage.map((coverage, index) => (
                           <Badge 
@@ -219,7 +260,7 @@ export default function EmployeeDetailsPage({ params }: { params: { id: string }
             <Calendar className="h-5 w-5 text-muted-foreground" />
             <h2 className="text-xl font-semibold">Leave History</h2>
           </div>
-          {employee.leaveStatus !== "Active" ? (
+          {employee.leaveStatus !== "-" && employee.leaveStatus !== "Active" ? (
             <div className="space-y-4">
               <div className="rounded-lg border p-4">
                 <div className="flex justify-between items-center mb-2">
@@ -230,21 +271,21 @@ export default function EmployeeDetailsPage({ params }: { params: { id: string }
                 </div>
                 <div className="grid md:grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <div className="grid grid-cols-2 gap-1 text-sm">
+                    <div className="grid grid-cols-2 gap-1 text-base">
                       <span className="text-muted-foreground">Start Date:</span>
                       <span className="font-medium">03/15/2025</span>
                     </div>
-                    <div className="grid grid-cols-2 gap-1 text-sm">
+                    <div className="grid grid-cols-2 gap-1 text-base">
                       <span className="text-muted-foreground">End Date:</span>
                       <span className="font-medium">04/15/2025</span>
                     </div>
                   </div>
                   <div className="space-y-2">
-                    <div className="grid grid-cols-2 gap-1 text-sm">
+                    <div className="grid grid-cols-2 gap-1 text-base">
                       <span className="text-muted-foreground">Type:</span>
                       <span className="font-medium">Medical</span>
                     </div>
-                    <div className="grid grid-cols-2 gap-1 text-sm">
+                    <div className="grid grid-cols-2 gap-1 text-base">
                       <span className="text-muted-foreground">Approved By:</span>
                       <span className="font-medium">Jane Manager</span>
                     </div>

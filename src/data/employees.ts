@@ -13,7 +13,7 @@ export const employees: Employee[] = [
     name: "John Smith",
     memberId: "123456789",
     coverage: ["Dental", "Vision", "Short Term Disability"],
-    leaveStatus: "Active",
+    leaveStatus: "-",
     dependents: 2
   },
   {
@@ -29,7 +29,7 @@ export const employees: Employee[] = [
     name: "Michael Brown",
     memberId: "345678901",
     coverage: ["Vision", "Short Term Disability"],
-    leaveStatus: "Active",
+    leaveStatus: "-",
     dependents: 0
   },
   {
@@ -37,7 +37,7 @@ export const employees: Employee[] = [
     name: "Emily Davis",
     memberId: "456789012",
     coverage: ["Dental", "Vision", "Long Term Disability"],
-    leaveStatus: "Active",
+    leaveStatus: "-",
     dependents: 3
   },
   {
@@ -45,7 +45,7 @@ export const employees: Employee[] = [
     name: "Robert Wilson",
     memberId: "567890123",
     coverage: ["Short Term Disability"],
-    leaveStatus: "Pending Return",
+    leaveStatus: "-",
     dependents: 0
   },
   {
@@ -53,7 +53,7 @@ export const employees: Employee[] = [
     name: "Jennifer Martinez",
     memberId: "678901234",
     coverage: ["Dental", "Vision", "Short Term Disability", "Long Term Disability"],
-    leaveStatus: "Active",
+    leaveStatus: "-",
     dependents: 2
   },
   {
@@ -69,7 +69,7 @@ export const employees: Employee[] = [
     name: "Lisa Thomas",
     memberId: "890123456",
     coverage: ["Vision", "Short Term Disability"],
-    leaveStatus: "Active",
+    leaveStatus: "-",
     dependents: 0
   },
   {
@@ -77,7 +77,7 @@ export const employees: Employee[] = [
     name: "James Taylor",
     memberId: "901234567",
     coverage: ["Dental", "Vision", "Long Term Disability"],
-    leaveStatus: "Active",
+    leaveStatus: "-",
     dependents: 4
   },
   {
@@ -85,7 +85,7 @@ export const employees: Employee[] = [
     name: "Patricia Moore",
     memberId: "012345678",
     coverage: ["Short Term Disability"],
-    leaveStatus: "On Leave",
+    leaveStatus: "-",
     dependents: 0
   },
   {
@@ -93,7 +93,7 @@ export const employees: Employee[] = [
     name: "Richard Jackson",
     memberId: "123789456",
     coverage: ["Dental", "Long Term Disability"],
-    leaveStatus: "Active",
+    leaveStatus: "-",
     dependents: 2
   },
   {
@@ -101,7 +101,7 @@ export const employees: Employee[] = [
     name: "Elizabeth White",
     memberId: "234890567",
     coverage: ["Dental", "Vision", "Short Term Disability"],
-    leaveStatus: "Active",
+    leaveStatus: "-",
     dependents: 1
   },
   {
@@ -109,7 +109,7 @@ export const employees: Employee[] = [
     name: "Charles Harris",
     memberId: "345901678",
     coverage: ["Vision", "Long Term Disability"],
-    leaveStatus: "Leave Requested",
+    leaveStatus: "-",
     dependents: 0
   },
   {
@@ -117,7 +117,7 @@ export const employees: Employee[] = [
     name: "Susan Clark",
     memberId: "456012789",
     coverage: ["Dental", "Short Term Disability"],
-    leaveStatus: "Active",
+    leaveStatus: "-",
     dependents: 2
   },
   {
@@ -125,7 +125,7 @@ export const employees: Employee[] = [
     name: "Joseph Lewis",
     memberId: "567123890",
     coverage: ["Dental", "Vision", "Long Term Disability"],
-    leaveStatus: "On Leave",
+    leaveStatus: "-",
     dependents: 3
   }
 ] 

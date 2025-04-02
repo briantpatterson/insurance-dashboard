@@ -3,6 +3,7 @@ import { DashboardLayout } from "@/components/dashboard-layout"
 import { BillingHistoryTable } from "@/components/billing-history-table"
 import { AutopayModule } from "@/components/autopay-module"
 import { billingHistory, autopaySettings } from "@/data/billing"
+import { BillingFaqCard } from "@/components/billing-faq-card"
 
 export const metadata: Metadata = {
   title: "Billing | Insurance Dashboard",
@@ -26,6 +27,7 @@ export default function BillingPage() {
           </div>
           <div>
             <AutopayModule settings={autopaySettings} />
+            <BillingFaqCard />
           </div>
         </div>
       </div>

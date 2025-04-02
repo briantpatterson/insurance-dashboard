@@ -77,24 +77,9 @@ export function BenefitCard({ benefit }: BenefitCardProps) {
     }
   }
   
-  // Get border color based on benefit type
+  // Get border color - now always gray for consistency with other cards
   const getBorderColor = () => {
-    switch (benefit.type) {
-      case "dental":
-        return "border-blue-200 dark:border-blue-800"
-      case "vision":
-        return "border-purple-200 dark:border-purple-800"
-      case "short-term-disability":
-        return "border-amber-200 dark:border-amber-800"
-      case "long-term-disability":
-        return "border-green-200 dark:border-green-800"
-      case "health":
-        return "border-red-200 dark:border-red-800"
-      case "life":
-        return "border-indigo-200 dark:border-indigo-800"
-      default:
-        return "border-gray-200 dark:border-gray-700"
-    }
+    return "border-gray-200 dark:border-gray-700"
   }
   
   // Get status badge variant

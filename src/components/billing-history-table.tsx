@@ -212,7 +212,7 @@ const columns: ColumnDef<BillingItem>[] = [
 
 // Status options for the filter dropdown
 const statusOptions = [
-  { label: "All", value: "all" },
+  { label: "All Statuses", value: "all" },
   { label: "Paid", value: "paid" },
   { label: "Pending", value: "pending" },
   { label: "Overdue", value: "overdue" },
@@ -312,7 +312,7 @@ export function BillingHistoryTable({ billingHistory }: BillingHistoryTableProps
               value={statusFilter}
               onValueChange={handleStatusFilterChange}
             >
-              <SelectTrigger className="h-10 w-[130px]">
+              <SelectTrigger className="h-10 w-[160px]">
                 <SelectValue placeholder="Filter by status" />
               </SelectTrigger>
               <SelectContent>

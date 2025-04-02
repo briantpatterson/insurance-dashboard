@@ -127,11 +127,19 @@ export default function BillingDetailsPage({ params }: BillingDetailsPageProps) 
                 </div>
               </div>
               
-              <div className="border-t pt-4">
-                <dl className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="border-t pt-3">
+                <dl className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                  <div className="grid grid-cols-2 gap-1 text-base">
+                    <dt className="text-muted-foreground">Issue Date:</dt>
+                    <dd className="font-medium text-slate-800 dark:text-slate-100">{formatDate(billingItem.date)}</dd>
+                  </div>
                   <div className="grid grid-cols-2 gap-1 text-base">
                     <dt className="text-muted-foreground">Due Date:</dt>
                     <dd className="font-medium text-slate-800 dark:text-slate-100">{formatDate(billingItem.dueDate)}</dd>
+                  </div>
+                  <div className="grid grid-cols-2 gap-1 text-base">
+                    <dt className="text-muted-foreground">Billing Reference Number:</dt>
+                    <dd className="font-medium text-slate-800 dark:text-slate-100">{billingItem.invoiceNumber}</dd>
                   </div>
                   <div className="grid grid-cols-2 gap-1 text-base">
                     <dt className="text-muted-foreground">Payment Method:</dt>

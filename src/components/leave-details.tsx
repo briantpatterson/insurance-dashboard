@@ -119,22 +119,20 @@ export function LeaveDetails({ leave }: LeaveDetailsProps) {
         </Card>
         
         {/* Calendar view */}
-        <Card className="w-full md:w-auto">
-          <CardHeader>
-            <CardTitle>Calendar View</CardTitle>
-            <CardDescription>Leave period visualization</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <Calendar
-              mode="range"
-              defaultMonth={startDate}
-              selected={{
-                from: startDate,
-                to: endDate
-              }}
-              className="rounded-md border"
-              disabled
-            />
+        <Card className="w-full md:max-w-md overflow-hidden">
+          <CardContent className="p-0">
+            <div className="calendar-container">
+              <Calendar
+                mode="range"
+                defaultMonth={startDate}
+                selected={{
+                  from: startDate,
+                  to: endDate
+                }}
+                className="w-full"
+                disabled
+              />
+            </div>
           </CardContent>
         </Card>
       </div>
