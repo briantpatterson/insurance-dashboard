@@ -31,7 +31,7 @@ export const documents: Document[] = [
   {
     id: "doc-001",
     title: "Dental Claim Form",
-    description: "Standard form for submitting dental insurance claims for reimbursement.",
+    description: "Standard form for dental insurance reimbursement claims.",
     category: "claim-forms",
     fileUrl: "/documents/forms/dental-claim-form.pdf",
     fileType: "pdf",
@@ -42,7 +42,7 @@ export const documents: Document[] = [
   {
     id: "doc-002",
     title: "Vision Claim Form",
-    description: "Form for submitting vision care expenses including exams, glasses, and contact lenses.",
+    description: "Form for vision care expenses including exams and materials.",
     category: "claim-forms",
     fileUrl: "/documents/forms/vision-claim-form.pdf",
     fileType: "pdf",
@@ -53,7 +53,7 @@ export const documents: Document[] = [
   {
     id: "doc-003",
     title: "Short-Term Disability Claim Form",
-    description: "Form for employees to file for short-term disability benefits due to illness or injury.",
+    description: "Form for filing short-term disability benefits.",
     category: "claim-forms",
     fileUrl: "/documents/forms/std-claim-form.pdf",
     fileType: "pdf",
@@ -64,7 +64,7 @@ export const documents: Document[] = [
   {
     id: "doc-004",
     title: "Long-Term Disability Claim Form",
-    description: "Comprehensive form for filing long-term disability claims with required medical documentation.",
+    description: "Form for filing long-term disability claims.",
     category: "claim-forms",
     fileUrl: "/documents/forms/ltd-claim-form.pdf",
     fileType: "pdf",
@@ -75,7 +75,7 @@ export const documents: Document[] = [
   {
     id: "doc-005",
     title: "Dependent Care Claim Form",
-    description: "Form for submitting dependent care expenses for reimbursement from flexible spending accounts.",
+    description: "Form for dependent care expense reimbursement.",
     category: "claim-forms",
     fileUrl: "/documents/forms/dependent-care-claim-form.pdf",
     fileType: "pdf",
@@ -88,7 +88,7 @@ export const documents: Document[] = [
   {
     id: "doc-006",
     title: "Dental Insurance Enrollment Kit",
-    description: "Complete information package for dental insurance enrollment including coverage options and costs.",
+    description: "Information package for dental insurance enrollment.",
     category: "enrollment-kits",
     fileUrl: "/documents/enrollment/dental-enrollment-kit.pdf",
     fileType: "pdf",
@@ -99,7 +99,7 @@ export const documents: Document[] = [
   {
     id: "doc-007",
     title: "Vision Insurance Enrollment Kit",
-    description: "Enrollment materials for vision insurance with details on providers, coverage, and premium costs.",
+    description: "Enrollment materials for vision insurance.",
     category: "enrollment-kits",
     fileUrl: "/documents/enrollment/vision-enrollment-kit.pdf",
     fileType: "pdf",
@@ -110,7 +110,7 @@ export const documents: Document[] = [
   {
     id: "doc-008",
     title: "Disability Insurance Enrollment Kit",
-    description: "Comprehensive guide to short-term and long-term disability insurance enrollment options.",
+    description: "Guide to disability insurance enrollment options.",
     category: "enrollment-kits",
     fileUrl: "/documents/enrollment/disability-enrollment-kit.pdf",
     fileType: "pdf",
@@ -121,7 +121,7 @@ export const documents: Document[] = [
   {
     id: "doc-009",
     title: "New Employee Benefits Enrollment Guide",
-    description: "Complete overview of all available benefits for new employees with enrollment instructions.",
+    description: "Overview of benefits for new employees.",
     category: "enrollment-kits",
     fileUrl: "/documents/enrollment/new-employee-benefits-guide.pdf",
     fileType: "pdf",
@@ -135,7 +135,7 @@ export const documents: Document[] = [
   {
     id: "doc-010",
     title: "Dental Plan Member Guide",
-    description: "Comprehensive guide for dental plan members including coverage details and how to find providers.",
+    description: "Guide for dental plan members with coverage details.",
     category: "member-guides",
     fileUrl: "/documents/guides/dental-member-guide.pdf",
     fileType: "pdf",
@@ -146,7 +146,7 @@ export const documents: Document[] = [
   {
     id: "doc-011",
     title: "Vision Plan Member Guide",
-    description: "Detailed information for vision plan members on benefits, network providers, and claim procedures.",
+    description: "Information for vision plan members on benefits and claims.",
     category: "member-guides",
     fileUrl: "/documents/guides/vision-member-guide.pdf",
     fileType: "pdf",
@@ -157,7 +157,7 @@ export const documents: Document[] = [
   {
     id: "doc-012",
     title: "Disability Insurance Member Guide",
-    description: "Guide for disability insurance members explaining coverage, filing claims, and return to work programs.",
+    description: "Guide for disability insurance coverage and claims.",
     category: "member-guides",
     fileUrl: "/documents/guides/disability-member-guide.pdf",
     fileType: "pdf",
@@ -168,7 +168,7 @@ export const documents: Document[] = [
   {
     id: "doc-013",
     title: "Online Portal User Guide",
-    description: "Step-by-step instructions for using the online member portal to access benefits and submit claims.",
+    description: "Instructions for using the online member portal.",
     category: "member-guides",
     fileUrl: "/documents/guides/portal-user-guide.pdf",
     fileType: "pdf",
@@ -181,7 +181,7 @@ export const documents: Document[] = [
   {
     id: "doc-014",
     title: "Dental Plan Benefits Summary",
-    description: "Concise overview of dental plan benefits including coverage levels, deductibles, and maximums.",
+    description: "Overview of dental plan benefits and coverage.",
     category: "benefit-summaries",
     fileUrl: "/documents/summaries/dental-benefits-summary.pdf",
     fileType: "pdf",
@@ -192,7 +192,7 @@ export const documents: Document[] = [
   {
     id: "doc-015",
     title: "Vision Plan Benefits Summary",
-    description: "Summary of vision plan benefits including exam coverage, materials allowances, and frequency limits.",
+    description: "Summary of vision plan benefits and allowances.",
     category: "benefit-summaries",
     fileUrl: "/documents/summaries/vision-benefits-summary.pdf",
     fileType: "pdf",
@@ -203,7 +203,7 @@ export const documents: Document[] = [
   {
     id: "doc-016",
     title: "Short-Term Disability Benefits Summary",
-    description: "Overview of short-term disability coverage including benefit amounts, waiting periods, and duration.",
+    description: "Overview of short-term disability coverage.",
     category: "benefit-summaries",
     fileUrl: "/documents/summaries/std-benefits-summary.pdf",
     fileType: "pdf",
@@ -214,7 +214,7 @@ export const documents: Document[] = [
   {
     id: "doc-017",
     title: "Long-Term Disability Benefits Summary",
-    description: "Summary of long-term disability benefits including eligibility, benefit calculation, and exclusions.",
+    description: "Summary of long-term disability benefits.",
     category: "benefit-summaries",
     fileUrl: "/documents/summaries/ltd-benefits-summary.pdf",
     fileType: "pdf",
@@ -225,7 +225,7 @@ export const documents: Document[] = [
   {
     id: "doc-018",
     title: "Annual Benefits Overview",
-    description: "Comprehensive summary of all employee benefits for the current plan year.",
+    description: "Comprehensive summary of all employee benefits.",
     category: "benefit-summaries",
     fileUrl: "/documents/summaries/annual-benefits-overview.pdf",
     fileType: "pdf",
@@ -239,7 +239,7 @@ export const documents: Document[] = [
   {
     id: "doc-019",
     title: "Customer Privacy Notice",
-    description: "Detailed information about how the company collects, uses, and protects customer personal information.",
+    description: "Information about customer personal data protection.",
     category: "legal-notices",
     fileUrl: "/documents/legal/privacy-notice.pdf",
     fileType: "pdf",
@@ -251,7 +251,7 @@ export const documents: Document[] = [
   {
     id: "doc-020",
     title: "HIPAA Privacy Notice",
-    description: "Federally required notice explaining rights and protections for personal health information.",
+    description: "Notice explaining personal health information rights.",
     category: "legal-notices",
     fileUrl: "/documents/legal/hipaa-privacy-notice.pdf",
     fileType: "pdf",
@@ -263,7 +263,7 @@ export const documents: Document[] = [
   {
     id: "doc-021",
     title: "Summary Plan Description",
-    description: "Legal document describing the complete terms of insurance plans as required by ERISA.",
+    description: "Legal document describing insurance plan terms.",
     category: "legal-notices",
     fileUrl: "/documents/legal/summary-plan-description.pdf",
     fileType: "pdf",
