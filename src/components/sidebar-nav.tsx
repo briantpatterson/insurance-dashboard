@@ -14,7 +14,8 @@ import {
   FileIcon,
   HelpCircle,
   BarChart,
-  FileCheck
+  FileCheck,
+  Activity
 } from "lucide-react"
 
 interface SidebarNavProps extends React.HTMLAttributes<HTMLElement> {
@@ -73,6 +74,11 @@ export const sidebarNavItems = [
     title: "Home",
     href: "/",
     icon: <Home className="h-5 w-5" />,
+  },
+  {
+    title: "Dashboard",
+    href: "/dashboard",
+    icon: <Activity className="h-5 w-5" />,
   },
   {
     title: "Employees",

@@ -48,7 +48,7 @@ const chartConfig = {
   },
 } satisfies ChartConfig
 
-export function DisabilityLeavesChart() {
+export function DisabilityLeavesChart({ hideTitle = false }: { hideTitle?: boolean }) {
   // Calculate total leaves for current and previous month
   const currentMonth = new Date().getMonth()
   const previousMonth = currentMonth === 0 ? 11 : currentMonth - 1
@@ -61,10 +61,12 @@ export function DisabilityLeavesChart() {
   
   return (
     <Card>
-      <CardHeader>
-        <CardTitle>Disability Leaves</CardTitle>
-        <CardDescription>January - December 2024</CardDescription>
-      </CardHeader>
+      {!hideTitle && (
+        <CardHeader>
+          <CardTitle>Disability Leaves</CardTitle>
+          <CardDescription>January - December 2024</CardDescription>
+        </CardHeader>
+      )}
       <CardContent>
         <ChartContainer config={chartConfig}>
           <ResponsiveContainer width="100%" height="100%">

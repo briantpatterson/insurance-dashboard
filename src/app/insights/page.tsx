@@ -2,6 +2,8 @@
 
 import { DashboardLayout } from "@/components/dashboard-layout"
 import { DisabilityLeavesChart } from "@/components/disability-leaves-chart"
+import { BenefitsUsageChart } from "@/components/benefits-usage-chart"
+import { BenefitsInsightsCard } from "@/components/benefits-insights-card"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 
 export default function InsightsPage() {
@@ -15,7 +17,8 @@ export default function InsightsPage() {
           </p>
         </div>
         
-        <div className="space-y-6">
+        <div className="space-y-8">
+          {/* Disability Leaves Section */}
           <div className="grid gap-6 md:grid-cols-2">
             <DisabilityLeavesChart />
             
@@ -75,6 +78,12 @@ export default function InsightsPage() {
                 </div>
               </CardContent>
             </Card>
+          </div>
+          
+          {/* Benefits Usage Section */}
+          <div className="grid gap-6 md:grid-cols-2">
+            <BenefitsUsageChart />
+            <BenefitsInsightsCard />
           </div>
         </div>
       </div>
