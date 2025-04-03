@@ -40,11 +40,11 @@ const leavesData = [
 const chartConfig = {
   std: {
     label: "Short-Term Disability",
-    color: "hsl(var(--primary))",
+    color: "hsl(221 83% 53%)", // Blue-600
   },
   ltd: {
     label: "Long-Term Disability",
-    color: "hsl(var(--secondary) / 0.8)",
+    color: "hsl(213 94% 68%)", // Blue-400
   },
 } satisfies ChartConfig
 
@@ -62,14 +62,14 @@ export function DisabilityLeavesChart() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Disability Leaves by Month</CardTitle>
+        <CardTitle>Disability Leaves</CardTitle>
         <CardDescription>January - December 2024</CardDescription>
       </CardHeader>
       <CardContent>
         <ChartContainer config={chartConfig}>
           <ResponsiveContainer width="100%" height="100%">
             <BarChart data={leavesData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
-              <CartesianGrid strokeDasharray="3 3" vertical={false} />
+              <CartesianGrid vertical={false} />
               <XAxis
                 dataKey="month"
                 tickLine={false}
@@ -77,26 +77,51 @@ export function DisabilityLeavesChart() {
                 axisLine={false}
                 tickFormatter={(value) => value.slice(0, 3)}
               />
-              <YAxis 
-                tickLine={false}
-                axisLine={false}
-                tickMargin={10}
+              <ChartTooltip 
+                content={({ active, payload, label }) => {
+                  if (active && payload && payload.length) {
+                    return (
+                      <div className="rounded-lg border bg-background p-2 shadow-sm">
+                        <div className="flex flex-col gap-1">
+                          {payload.map((entry, index) => (
+                            <div
+                              key={`item-${index}`}
+                              className="flex items-center gap-2 text-sm"
+                            >
+                              <div
+                                className="h-3 w-3 rounded-full"
+                                style={{ backgroundColor: entry.color }}
+                              />
+                              <span className="font-medium">
+                                {entry.name}:
+                              </span>
+                              <span className="font-bold">{entry.value}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )
+                  }
+                  return null
+                }}
+                cursor={{ fill: 'rgba(0, 0, 0, 0.05)' }}
+                isAnimationActive={true}
               />
-              <ChartTooltip content={<ChartTooltipContent hideLabel />} />
-              <ChartLegend content={<ChartLegendContent />} />
               <Bar
                 dataKey="std"
                 stackId="a"
-                fill="var(--color-std)"
+                fill="hsl(221 83% 53%)"
                 radius={[0, 0, 4, 4]}
-                name="std"
+                name="Short-term disability"
+                isAnimationActive={true}
               />
               <Bar
                 dataKey="ltd"
                 stackId="a"
-                fill="var(--color-ltd)"
+                fill="hsl(213 94% 68%)"
                 radius={[4, 4, 0, 0]}
-                name="ltd"
+                name="Long-term disability"
+                isAnimationActive={true}
               />
             </BarChart>
           </ResponsiveContainer>
