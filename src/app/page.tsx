@@ -25,7 +25,7 @@ export default function HomePage() {
         <div className="flex flex-col space-y-2">
           <h1 className="text-3xl font-bold tracking-tight">Dashboard</h1>
           <p className="text-muted-foreground">
-            Overview of your organization's benefits and insurance
+            Overview of WillowTree, LLC insurance benefits
           </p>
         </div>
 
@@ -38,17 +38,17 @@ export default function HomePage() {
               <Users className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">342</div>
+              <div className="text-2xl font-bold">1,342</div>
               <p className="text-xs text-muted-foreground">
                 +12 from last month
               </p>
             </CardContent>
           </Card>
 
-          {/* Enrolled Dependents */}
+          {/* Total Dependents */}
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Enrolled Dependents</CardTitle>
+              <CardTitle className="text-sm font-medium">Total Dependents</CardTitle>
               <UserPlus className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
@@ -82,7 +82,7 @@ export default function HomePage() {
             <CardContent>
               <div className="text-2xl font-bold">14</div>
               <p className="text-xs text-muted-foreground">
-                3 new requests pending review
+                +3 from last month
               </p>
             </CardContent>
           </Card>
@@ -90,19 +90,19 @@ export default function HomePage() {
 
         {/* Charts and Billing Summary */}
         <div className="grid gap-4 md:grid-cols-2">
-          {/* Consolidated Active Benefits */}
-          <Card>
+          {/* Consolidated Benefits */}
+          <Card className="flex flex-col">
             <CardHeader>
-              <CardTitle>Active Benefits</CardTitle>
-              <CardDescription>Summary of your organization's active benefit plans</CardDescription>
+              <CardTitle>Benefits</CardTitle>
+              <CardDescription>Summary of your organization's active benefits</CardDescription>
             </CardHeader>
-            <CardContent className="space-y-4">
+            <CardContent className="space-y-4 flex-grow">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <SmilePlus className="h-5 w-5 text-blue-600" />
                   <div>
                     <div className="font-medium">Dental</div>
-                    <div className="text-xs text-muted-foreground">Premium PPO • Delta Dental</div>
+                    <div className="text-xs text-muted-foreground">PPO • Dental Pro Network</div>
                   </div>
                 </div>
                 <Badge className="bg-green-100 text-green-800 hover:bg-green-100 border-green-300">Active</Badge>
@@ -113,7 +113,7 @@ export default function HomePage() {
                   <Eye className="h-5 w-5 text-cyan-600" />
                   <div>
                     <div className="font-medium">Vision</div>
-                    <div className="text-xs text-muted-foreground">Enhanced Vision • VSP</div>
+                    <div className="text-xs text-muted-foreground">Administered by VSP</div>
                   </div>
                 </div>
                 <Badge className="bg-green-100 text-green-800 hover:bg-green-100 border-green-300">Active</Badge>
@@ -124,7 +124,7 @@ export default function HomePage() {
                   <Clock className="h-5 w-5 text-purple-600" />
                   <div>
                     <div className="font-medium">Short-term Disability</div>
-                    <div className="text-xs text-muted-foreground">Comprehensive STD • Guardian</div>
+                    <div className="text-xs text-muted-foreground">Paid leave up to 26 weeks</div>
                   </div>
                 </div>
                 <Badge className="bg-green-100 text-green-800 hover:bg-green-100 border-green-300">Active</Badge>
@@ -135,64 +135,63 @@ export default function HomePage() {
                   <Calendar className="h-5 w-5 text-pink-600" />
                   <div>
                     <div className="font-medium">Long-term Disability</div>
-                    <div className="text-xs text-muted-foreground">Extended LTD Plus • MetLife</div>
+                    <div className="text-xs text-muted-foreground">Paid leave up to 52 weeks</div>
                   </div>
                 </div>
                 <Badge className="bg-green-100 text-green-800 hover:bg-green-100 border-green-300">Active</Badge>
               </div>
             </CardContent>
-            <CardFooter>
+            <CardFooter className="mt-auto pt-4">
               <Button variant="outline" className="w-full" asChild>
                 <Link href="/benefits">
-                  View All Benefits
-                  <ArrowRight className="ml-2 h-4 w-4" />
+                  Manage Benefits
                 </Link>
               </Button>
             </CardFooter>
           </Card>
           
           {/* Billing Summary */}
-          <Card>
+          <Card className="flex flex-col">
             <CardHeader>
-              <CardTitle>Latest Billing</CardTitle>
+              <CardTitle>Last Billing Statement</CardTitle>
               <CardDescription>Summary of your most recent bill</CardDescription>
             </CardHeader>
-            <CardContent className="space-y-8">
+            <CardContent className="space-y-4 flex-grow">
               <div className="space-y-4">
                 <div className="space-y-2">
                   <div className="text-3xl font-bold">$42,586.78</div>
                   <p className="text-xs text-muted-foreground">
-                    Jan 1, 2024 - Jan 31, 2024
+                    For coverage period: April 2025
                   </p>
                 </div>
                 
                 <div className="space-y-2">
                   <div className="flex justify-between text-sm">
-                    <span className="text-muted-foreground">Medical</span>
+                    <span className="text-muted-foreground">Dental</span>
                     <span className="font-medium">$31,542.00</span>
                   </div>
                   <div className="flex justify-between text-sm">
-                    <span className="text-muted-foreground">Dental</span>
+                    <span className="text-muted-foreground">Vision</span>
                     <span className="font-medium">$5,842.25</span>
                   </div>
                   <div className="flex justify-between text-sm">
-                    <span className="text-muted-foreground">Vision</span>
+                    <span className="text-muted-foreground">Short-term Disability</span>
                     <span className="font-medium">$1,256.78</span>
                   </div>
                   <div className="flex justify-between text-sm">
-                    <span className="text-muted-foreground">Disability</span>
+                    <span className="text-muted-foreground">Long-term Disability</span>
                     <span className="font-medium">$3,945.75</span>
                   </div>
                 </div>
               </div>
-              
+            </CardContent>
+            <CardFooter className="mt-auto pt-4">
               <Button variant="outline" className="w-full" asChild>
                 <Link href="/billing">
-                  <CreditCard className="mr-2 h-4 w-4" />
-                  View Full Billing Details
+                  Manage Billing
                 </Link>
               </Button>
-            </CardContent>
+            </CardFooter>
           </Card>
         </div>
 
