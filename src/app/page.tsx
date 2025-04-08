@@ -23,9 +23,9 @@ export default function HomePage() {
     <DashboardLayout>
       <div className="flex flex-col space-y-8">
         <div className="flex flex-col space-y-2">
-          <h1 className="text-3xl font-bold tracking-tight">Dashboard</h1>
+          <h1 className="text-3xl font-bold tracking-tight">WillowTree, LLC</h1>
           <p className="text-muted-foreground">
-            Overview of WillowTree, LLC insurance benefits
+            Overview of your organization's insurance benefits
           </p>
         </div>
 

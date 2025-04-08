@@ -15,10 +15,8 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
 import { toast } from "@/components/ui/use-toast"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
 const profileFormSchema = z.object({
   name: z
@@ -38,12 +36,6 @@ const profileFormSchema = z.object({
     .string()
     .min(10, {
       message: "Phone number must be at least 10 digits.",
-    })
-    .optional(),
-  bio: z
-    .string()
-    .max(160, {
-      message: "Bio must not be longer than 160 characters.",
     })
     .optional(),
   jobTitle: z
@@ -67,7 +59,6 @@ const defaultValues: Partial<ProfileFormValues> = {
   name: "Admin User",
   email: "admin@example.com",
   phone: "555-123-4567",
-  bio: "HR Administrator with 5+ years of experience managing employee benefits and insurance.",
   jobTitle: "HR Administrator",
   department: "Human Resources",
 }
@@ -95,26 +86,6 @@ export function ProfileSettings() {
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-6">
-        <div className="flex items-center space-x-4">
-          <Avatar className="h-20 w-20">
-            <AvatarImage src="/avatars/admin-user.png" alt="Admin User" />
-            <AvatarFallback>AU</AvatarFallback>
-          </Avatar>
-          <div className="space-y-1">
-            <h4 className="text-sm font-medium leading-none">Profile Picture</h4>
-            <p className="text-sm text-muted-foreground">
-              JPG, GIF or PNG. Max size of 3MB.
-            </p>
-            <div className="flex items-center pt-2">
-              <Button variant="outline" size="sm" className="mr-2">
-                Upload
-              </Button>
-              <Button variant="ghost" size="sm">
-                Remove
-              </Button>
-            </div>
-          </div>
-        </div>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
             <div className="grid gap-4 md:grid-cols-2">
@@ -184,26 +155,6 @@ export function ProfileSettings() {
                 )}
               />
             </div>
-            <FormField
-              control={form.control}
-              name="bio"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Bio</FormLabel>
-                  <FormControl>
-                    <Textarea
-                      placeholder="Tell us a little bit about yourself"
-                      className="resize-none"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormDescription>
-                    Brief description for your profile. URLs are hyperlinked.
-                  </FormDescription>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
             <Button type="submit">Update profile</Button>
           </form>
         </Form>

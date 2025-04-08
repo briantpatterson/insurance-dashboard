@@ -17,9 +17,6 @@ import {
 import { Input } from "@/components/ui/input"
 import { toast } from "@/components/ui/use-toast"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Separator } from "@/components/ui/separator"
-import { AlertCircle } from "lucide-react"
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 
 const passwordFormSchema = z
   .object({
@@ -147,38 +144,6 @@ export function AccountSettings() {
             </p>
           </div>
           <Button variant="outline">Set up authenticator app</Button>
-        </CardContent>
-      </Card>
-      <Card>
-        <CardHeader>
-          <CardTitle>Account Management</CardTitle>
-          <CardDescription>
-            Manage your account settings and preferences.
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <div className="space-y-2">
-            <h4 className="font-medium">Export Account Data</h4>
-            <p className="text-sm text-muted-foreground">
-              Download a copy of your account data.
-            </p>
-            <Button variant="outline">Export data</Button>
-          </div>
-          <Separator />
-          <div className="space-y-2">
-            <h4 className="font-medium text-destructive">Delete Account</h4>
-            <p className="text-sm text-muted-foreground">
-              Permanently delete your account and all of your data.
-            </p>
-            <Alert variant="destructive">
-              <AlertCircle className="h-4 w-4" />
-              <AlertTitle>Warning</AlertTitle>
-              <AlertDescription>
-                This action cannot be undone. This will permanently delete your account and remove your data from our servers.
-              </AlertDescription>
-            </Alert>
-            <Button variant="destructive">Delete account</Button>
-          </div>
         </CardContent>
       </Card>
     </div>
