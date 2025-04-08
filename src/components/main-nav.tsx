@@ -27,15 +27,6 @@ export function MainNav({
         Home
       </Link>
       <Link
-        href="/dashboard"
-        className={cn(
-          "text-sm font-medium transition-colors hover:text-primary",
-          pathname === "/dashboard" ? "text-primary" : "text-muted-foreground"
-        )}
-      >
-        Dashboard
-      </Link>
-      <Link
         href="/employees"
         className={cn(
           "text-sm font-medium transition-colors hover:text-primary",

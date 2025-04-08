@@ -76,11 +76,6 @@ export const sidebarNavItems = [
     icon: <Home className="h-5 w-5" />,
   },
   {
-    title: "Dashboard",
-    href: "/dashboard",
-    icon: <Activity className="h-5 w-5" />,
-  },
-  {
     title: "Employees",
     href: "/employees",
     icon: <ClipboardList className="h-5 w-5" />,
